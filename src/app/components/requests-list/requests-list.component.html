@@ -1,0 +1,114 @@
+<!-- Small boxes (Stat box) -->
+<div class="row">
+  <div class="col-lg-4 col-6">
+    <!-- small box -->
+    <a href="requests/l/New" >
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{newRequest}}</h3>
+
+        <p>New Requests</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-bag"></i>
+      </div>
+    </div>
+    </a>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-6">
+    <!-- small box -->
+    <a href="requests/l/Booked" >
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{booked}}</h3>
+
+        <p>Booked</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-stats-bars"></i>
+      </div>
+    </div>
+    </a>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-6">
+    <!-- small box -->
+    <a href="requests/l/Completed" >
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{completed}}</h3>
+
+        <p>Completed</p>
+      </div>
+      <div class="icon">
+        <i class="ion ion-person-add"></i>
+      </div>
+    </div>
+    </a>
+  </div>
+  
+</div>
+<!-- /.row -->
+<div class="list row mt-2">
+    
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Requests</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th>Registration Name</th>
+                <th>Service</th>
+                <th>Pickup Point</th>
+                <th>Destination</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let request of requests; let i = index"
+              [class.active]="i == currentIndex"
+              (click)="setActiveRequest(request, i)" 
+              data-togglexx="modal" data-targetxx="#modal-default"
+              >
+                <td >{{ request.registration?.name }}</td>
+                <td>{{ request.service }}
+                </td>
+                <td>{{ request.pickupPoint }}</td>
+                <td>{{ request.destination }}</td>
+                <td>{{ request.status }}</td>
+              </tr>
+              
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+  
+      
+      <app-request-details
+        [viewMode]="true"
+        [currentRequest]="currentRequest"
+      ></app-request-details>
+      
+      
+    </div>
+    <script>
+      $(function () {
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>

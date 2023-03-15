@@ -1,0 +1,81 @@
+<div class="list row mt-2">
+  <!--
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by name"
+          [(ngModel)]="name"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="col-12">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Registrations</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let registration of registrations; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveRegistration(registration, i)" 
+            data-toggle="modal" data-target="#modal-default">
+              <td >{{ registration.name }}</td>
+              <td>{{ registration.email }}
+              </td>
+              <td>{{ registration.phone }}</td>
+              <td>{{ registration.streetAddress }}</td>
+              <td>{{ registration.status ? "Active" : "Inactive" }}</td>
+            </tr>
+            
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+
+    
+    <app-registration-details
+      [viewMode]="true"
+      [currentRegistration]="currentRegistration"
+    ></app-registration-details>
+    
+    
+  </div>
+  <script>
+    $(function () {
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>

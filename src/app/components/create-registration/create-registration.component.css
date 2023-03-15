@@ -1,0 +1,9 @@
+.submit-form {
+    max-width: 400px;
+    margin: auto;
+  }
+  div.message{
+    position: absolute;
+    left:30%;
+    right:10%;
+  }

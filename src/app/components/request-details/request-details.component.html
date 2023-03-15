@@ -1,0 +1,359 @@
+<div *ngIf="viewMode; else editable">
+    <!-- /.modal-dialog -->
+    <div class="modal fade" id="modal-default">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Request</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div *ngIf="currentRequest.id">
+              
+              <div>
+                <label><strong>Registration Id:</strong></label> {{ currentRequest.registrationId }}
+              </div>
+              <div>
+                <label><strong>Service:</strong></label>
+                {{ currentRequest.service }}
+              </div>
+              <div>
+                <label><strong>Pickup Point:</strong></label>
+                {{ currentRequest.pickupPoint }}
+              </div>
+              <div>
+                <label><strong>Destination:</strong></label>
+                {{ currentRequest.destination }}
+              </div>
+              <div>
+                <label><strong>Appointment Time:</strong></label>
+                {{ currentRequest.appointmentTime }}
+              </div>
+              <div>
+                <label><strong>Pickup Time:</strong></label>
+                {{ currentRequest.pickupTime }}
+              </div>
+              <div>
+                <label><strong>Wheel Chair Assisstance required</strong></label>
+                {{ currentRequest.wheelChairAssisstance }}
+              </div>
+              <div>
+                <label><strong>User Comments:</strong></label>
+                {{ currentRequest.userComments }}
+              </div>
+              <div>
+                <label><strong>Status:</strong></label>
+                {{ currentRequest.status }}
+              </div>
+              <div>
+                <label><strong>Comments:</strong></label>
+                {{ currentRequest.comments }}
+              </div>
+              <div>
+                <label><strong>Vendor:</strong></label>
+                {{ currentRequest.vendor }}
+              </div>
+              <div>
+                <label><strong>Contact Person:</strong></label>
+                {{ currentRequest.contactPerson }}
+              </div>
+              <div>
+                <label><strong>Contact Number:</strong></label>
+                {{ currentRequest.contactNumber }}
+              </div>
+              
+            </div>
+            <div *ngIf="!currentRequest">
+              <br />
+              <p>Please click on a Request...</p>
+            </div>
+  
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            <a
+                class="btn btn-warning"
+                routerLink="/requests/{{ currentRequest.id }}"
+                data-dismiss="modal"
+              >
+                Edit
+              </a>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      
+    </div>
+    <!-- /.modal-dialog -->
+      
+    </div>
+    <ng-template #editable>
+
+      <div *ngIf="currentRequest.id" class="edit-form">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Update Request</h3>
+          <div class="message">{{ message }}</div>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+          <div class="card-body">  
+            <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group mb-1">
+                <label for="registrationName" class="mb-1">Registration</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="registrationName"
+                  required
+                  [ngModel]="currentRequest.registration?.name"
+                  name="registrationName"
+                  readonly
+                />
+                <input
+                  type="hidden"
+                  class="form-control"
+                  id="registrationId"
+                  required
+                  [(ngModel)]="currentRequest.registrationId"
+                  name="registrationId"
+                  readonly
+                />
+              </div>
+            </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="service" class="mb-1">Service</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="service"
+                    required
+                    [(ngModel)]="currentRequest.service"
+                    name="service"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="pickupPoint" class="mb-1">Pickup Point</label>
+                  <input
+                      type="pickupPoint"
+                    class="form-control"
+                    id="pickupPoint"
+                    required
+                    [(ngModel)]="currentRequest.pickupPoint"
+                    name="pickupPoint"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="destination" class="mb-1">Destination</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="destination"
+                    required
+                    [(ngModel)]="currentRequest.destination"
+                    name="destination"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="appointmentDate" class="mb-1">Doctor Appointment Time</label>
+                  <div class="row">
+                    <div class="col-6">
+                      <input
+                      type="date"
+                    class="form-control"
+                    id="appointmentDate"
+                    required
+                    [ngModel]="currentRequest.appointmentDate | date: 'yyyy-MM-dd'"
+                    (ngModelChange)="currentRequest.appointmentDate = $event"
+                    name="appointmentDate"
+                  />
+                    </div>
+                    <div class="col-6">
+                      <input
+                      type="time"
+                    class="form-control"
+                    id="appointmentTime"
+                    required
+                    [ngModel]="currentRequest.appointmentTime | date: 'HH:mm'"
+                    (ngModelChange)="currentRequest.appointmentTime = $event"
+                    name="appointmentTime"
+                  />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="pickupDate" class="mb-1">Pickup Time From Home</label>
+                  <div class="row">
+                    <div class="col-6">
+                      <input
+                      type="date"
+                    class="form-control"
+                    id="pickupDate"
+                    required
+                    [ngModel]="currentRequest.pickupDate | date: 'yyyy-MM-dd'"
+                    (ngModelChange)="currentRequest.pickupDate = $event"
+                    name="pickupDate"
+                  />
+                    </div>
+                    <div class="col-6">
+                      <input
+                      type="time"
+                    class="form-control"
+                    id="pickupTime"
+                    required
+                    [ngModel]="currentRequest.pickupTime | date: 'HH:mm'"
+                    (ngModelChange)="currentRequest.pickupTime = $event"
+                    name="pickupTime"
+                  />
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="wheelChairAssisstance" class="mb-1">Wheel Chair Assisstance Requried</label>
+                  <select class="custom-select form-control" 
+                  id="wheelChairAssisstance" 
+                  name="wheelChairAssisstance"
+                  required
+                  [(ngModel)]="currentRequest.wheelChairAssisstance">
+                  <option>No</option>  
+                  <option>Yes</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="userComments" class="mb-1">User Comments</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="userComments"
+                    required
+                    [(ngModel)]="currentRequest.userComments"
+                    name="userComments"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="comments" class="mb-1">Comments</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="comments"
+                    required
+                    [(ngModel)]="currentRequest.comments"
+                    name="comments"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="status" class="mb-1">Status</label>
+                  <select class="custom-select form-control" 
+                  id="status" 
+                  name="status"
+                  required
+                  [(ngModel)]="currentRequest.status">
+                    <option>New</option>
+                    <option>Booked</option>
+                    <option>Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4"></div>
+            </div>
+            <div class="row">
+              
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                  <label for="vendor" class="mb-1">Vendor</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="vendor"
+                    required
+                    [(ngModel)]="currentRequest.vendor"
+                    name="vendor"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                    <label for="contactPerson" class="mb-1">Contact Person</label>
+                    <input
+                        type="text"
+                      class="form-control"
+                      id="contactPerson"
+                      required
+                      [(ngModel)]="currentRequest.contactPerson"
+                      name="contactPerson"
+                    />
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group mb-1">
+                    <label for="contactNumber" class="mb-1">Contact Number</label>
+                    <input
+                        type="text"
+                      class="form-control"
+                      id="contactNumber"
+                      required
+                      [(ngModel)]="currentRequest.contactNumber"
+                      name="contactNumber"
+                    />
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="col-sm-4"></div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+      
+          <div class="card-footer">
+            <button class="btn btn-danger me-2 mb-2" (click)="deleteRequest()">
+              Delete
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success mb-2"
+              (click)="updateRequest()"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+      <div *ngIf="!currentRequest.id">
+        <br />
+        <p>Cannot access this Request...</p>
+      </div>
+    </ng-template>

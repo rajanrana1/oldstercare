@@ -1,0 +1,312 @@
+<div *ngIf="viewMode; else editable">
+  <!-- /.modal-dialog -->
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Registration</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div *ngIf="currentRegistration.id">
+            
+            <div>
+              <label><strong>Name:</strong></label> {{ currentRegistration.name }}
+            </div>
+            <div>
+              <label><strong>Phone:</strong></label>
+              {{ currentRegistration.phone }}
+            </div>
+            <div>
+              <label><strong>Email:</strong></label>
+              {{ currentRegistration.email }}
+            </div>
+            <div>
+              <label><strong>Date of Birth:</strong></label>
+              {{ currentRegistration.dateOfBirth }}
+            </div>
+            <div>
+              <label><strong>Street Address:</strong></label>
+              {{ currentRegistration.streetAddress }}
+            </div>
+            <div>
+              <label><strong>City:</strong></label>
+              {{ currentRegistration.city }}
+            </div>
+            <div>
+              <label><strong>State:</strong></label>
+              {{ currentRegistration.state }}
+            </div>
+            <div>
+              <label><strong>Zip:</strong></label>
+              {{ currentRegistration.zip }}
+            </div>
+            <div>
+              <label><strong>Subscription Plan:</strong></label>
+              {{ currentRegistration.subscriptionPlan }}
+            </div>
+            <div>
+              <label><strong>Emergency Contact Name:</strong></label>
+              {{ currentRegistration.emergencyContactName }}
+            </div>
+            <div>
+              <label><strong>Emergency Contact Phone:</strong></label>
+              {{ currentRegistration.emergencyContactPhone }}
+            </div>
+            <div>
+              <label><strong>Emergency Contact Address:</strong></label>
+              {{ currentRegistration.emergencyContactAddress }}
+            </div>
+      
+      
+            <div>
+              <label><strong>Status:</strong></label>
+              {{ currentRegistration.status ? "Active" : "Inactive" }}
+            </div>
+            
+          </div>
+          <div *ngIf="!currentRegistration">
+            <br />
+            <p>Please click on a Registration...</p>
+          </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a
+                class="btn btn-warning"
+                routerLink="/createRequest/{{ currentRegistration.id }}"
+                data-dismiss="modal"
+              >
+                Create Request
+              </a>
+          <a
+              class="btn btn-warning"
+              routerLink="/registrations/{{ currentRegistration.id }}"
+              data-dismiss="modal"
+            >
+              Edit
+            </a>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    
+  </div>
+  <!-- /.modal-dialog -->
+    
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentRegistration.id" class="edit-form">
+
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Update Registration</h3>
+          <div class="message">{{ message }}</div>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="name" class="mb-1">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    [(ngModel)]="currentRegistration.name"
+                    name="name"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="email" class="mb-1">Email</label>
+                  <input
+                      type="email"
+                    class="form-control"
+                    id="email"
+                    required
+                    [(ngModel)]="currentRegistration.email"
+                    name="email"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="phone" class="mb-1">Phone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    [(ngModel)]="currentRegistration.phone"
+                    name="phone"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="dateOfBirth" class="mb-1">Date of Birth</label>
+                  <input
+                      type="date"
+                    class="form-control"
+                    id="dateOfBirth"
+                    required
+                    [(ngModel)]="currentRegistration.dateOfBirth"
+                    name="dateOfBirth"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="streetAddress" class="mb-1">Street Address</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="streetAddress"
+                    required
+                    [(ngModel)]="currentRegistration.streetAddress"
+                    name="streetAddress"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="city" class="mb-1">City</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="city"
+                    required
+                    [(ngModel)]="currentRegistration.city"
+                    name="city"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="state" class="mb-1">State</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="state"
+                    required
+                    [(ngModel)]="currentRegistration.state"
+                    name="state"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="emergencyContactName" class="mb-1">Emergency Contact Name</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="emergencyContactName"
+                    required
+                    [(ngModel)]="currentRegistration.emergencyContactName"
+                    name="emergencyContactName"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="emergencyContactPhone" class="mb-1">Emergency Contact Phone</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="emergencyContactPhone"
+                    required
+                    [(ngModel)]="currentRegistration.emergencyContactPhone"
+                    name="emergencyContactPhone"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="emergencyContactAddress" class="mb-1">Emergency Contact Address</label>
+                  <input
+                      type="text"
+                    class="form-control"
+                    id="emergencyContactAddress"
+                    required
+                    [(ngModel)]="currentRegistration.emergencyContactAddress"
+                    name="emergencyContactAddress"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group mb-1">
+                  <label for="subscriptionPlan" class="mb-1">Subscription</label>
+                  <select class="custom-select form-control" 
+                  id="subscriptionPlan" 
+                  name="subscriptionPlan"
+                  required
+                  [(ngModel)]="currentRegistration.subscriptionPlan">
+                    <option>Gold</option>
+                    <option>Silver</option>
+                    <option>Bronze</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group mb-5">
+                  <label><strong>Status:</strong></label>
+                  {{ currentRegistration.status ? "Active" : "Inactive" }}
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.card-body -->
+      
+          <div class="card-footer">
+            <button
+        class="btn btn-primary me-2 mb-2"
+        *ngIf="currentRegistration.status"
+        (click)="updateStatus(false)"
+      >
+        Inactive
+      </button>
+      <button
+        *ngIf="!currentRegistration.status"
+        class="btn btn-primary me-2 mb-2"
+        (click)="updateStatus(true)"
+      >
+        Active
+      </button>
+      <button class="btn btn-danger me-2 mb-2" (click)="deleteRegistration()">
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="btn btn-success mb-2"
+        (click)="updateRegistration()"
+      >
+        Update
+      </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div *ngIf="!currentRegistration.id">
+      <br />
+      <p>Cannot access this Registration...</p>
+    </div>
+  </ng-template>
